@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (_emailController.text.trim() == _mockEmail &&
         _passwordController.text == _mockPassword) {
-      // Login berhasil
+      // Login 
       final user = User(email: _mockEmail, name: "Admin User");
 
       if (mounted) {
