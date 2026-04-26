@@ -17,9 +17,31 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isPasswordVisible = false;
   String? _errorMessage;
 
-  // Mock credential
-  final String _mockEmail = "admin@test.com";
-  final String _mockPassword = "Admin123";
+
+  final List<Map<String, String>> _users = [
+    {
+      "email": "admin@test.com",
+      "password": "Admin123",
+      "name": "Admin User"
+    },
+    {
+      "email": "krisna@gmail.com",
+      "password": "krisna123",
+      "name": "Krisna Pratama"
+    },
+    {
+      "email": "puyoh@student.com",
+      "password": "putri123",
+      "name": "Putri Yohana"
+    },
+    {
+      "email": "budi@test.com",
+      "password": "budi123",
+      "name": "Budi Santoso"
+    },
+    //
+  ];
+  // ===============================================================
 
   void _login() async {
     if (!_formKey.currentState!.validate()) return;
@@ -32,19 +54,37 @@ class _LoginScreenState extends State<LoginScreen> {
     // Simulasi delay login
     await Future.delayed(const Duration(seconds: 2));
 
-    if (_emailController.text.trim() == _mockEmail &&
-        _passwordController.text == _mockPassword) {
-      // Login 
-      final user = User(email: _mockEmail, name: "Admin User");
+    // === BAGIAN INI JUGA DIGANTI ===
+    bool loginSuccess = false;
+    User? loggedInUser;
 
+    for (var user in _users) {
+      if (user["email"] == _emailController.text.trim() &&
+          user["password"] == _passwordController.text) {
+        
+        loginSuccess = true;
+        loggedInUser = User(
+          email: user["email"]!,
+          name: user["name"]!,
+        );
+        break;
+      }
+    }
+
+    if (loginSuccess && loggedInUser != null) {
       if (mounted) {
-        Navigator.pushReplacementNamed(context, '/dashboard', arguments: user);
+        Navigator.pushReplacementNamed(
+          context, 
+          '/dashboard', 
+          arguments: loggedInUser
+        );
       }
     } else {
       setState(() {
         _errorMessage = "Email atau password salah!";
       });
     }
+    // ===================================
 
     setState(() => _isLoading = false);
   }
@@ -70,7 +110,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   const Text("Login untuk melanjutkan"),
                   const SizedBox(height: 40),
 
-                  // Email Field
                   TextFormField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
@@ -92,7 +131,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 16),
 
-                  // Password Field
                   TextFormField(
                     controller: _passwordController,
                     obscureText: !_isPasswordVisible,
