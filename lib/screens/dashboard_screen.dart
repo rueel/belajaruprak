@@ -16,7 +16,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   void initState() {
     super.initState();
-    // Ambil data user
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final args = ModalRoute.of(context)?.settings.arguments as User;
       setState(() => _user = args);
@@ -36,7 +35,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       _currentIndex = index;
     });
   }
-//dd
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,18 +57,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
           children: [
             Text(
               "Selamat datang, ${_user.name}",
-              style: const TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
             ),
-          Text(
-            _user.email,
-            style: const TextStyle(fontSize: 16, color: Colors.grey),
-          ),
-          const SizedBox(height: 30),
+            Text(
+              _user.email,
+              style: const TextStyle(fontSize: 16, color: Colors.grey),
+            ),
+            const SizedBox(height: 30),
 
-          const Text(
+            const Text(
               "Daftar Menu",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
@@ -81,9 +77,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 itemBuilder: (context, index) {
                   return Card(
                     margin: const EdgeInsets.only(bottom: 12),
-                    elevation: 4,                    
+                    elevation: 4,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12), // Rounded corner
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: ListTile(
                       leading: CircleAvatar(
@@ -101,11 +97,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ],
         ),
       ),
+
+      // Bottom Navigation Bar
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
-        onTap: _onTabTapped,           
+        onTap: _onTabTapped,
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
+        type: BottomNavigationBarType.fixed,   
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.menu), label: "Menu"),
