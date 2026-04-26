@@ -53,6 +53,42 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 fontSize: 26,
                 fontWeight: FontWeight.bold,
               ),
+            ),
+          Text(
+            _user.email,
+            style: const TextStyle(fontSize: 16, color: Colors.grey),
+          ),
+          const SizedBox(height: 30),
+
+          const Text(
+              "Daftar Menu",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+
+            Expanded(
+              child: ListView.builder(
+                itemCount: 12,
+                itemBuilder: (context, index) {
+                  return Card(
+                    margin: const EdgeInsets.only(bottom: 12),
+                    elevation: 4,                    // Shadow
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12), // Rounded corner
+                    ),
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.blue.shade100,
+                        child: Text("${index + 1}"),
+                      ),
+                      title: Text("Menu ${index + 1}"),
+                      subtitle: const Text("Deskripsi singkat menu aplikasi"),
+                      trailing: const Icon(Icons.arrow_forward_ios),
+                    ),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
