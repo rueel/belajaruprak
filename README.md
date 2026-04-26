@@ -1,56 +1,33 @@
-# koding
-
-Error error go away🙏
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
 # Aplikasi Login Flutter
 
-## Deskripsi Aplikasi
-Aplikasi login sederhana berbasis Flutter. Aplikasi ini bersifat offline(mirip dummy) dan memiliki tiga halaman utama yaitu Login, Lupa Password, dan Dashboard.
+Aplikasi login sederhana berbasis Flutter yang dibuat untuk tugas praktikum Mobile Programming. Aplikasi ini bersifat **offline** dan memiliki tiga halaman utama.
 
 ## Daftar Fitur
 
 - **Halaman Login**
   - Form login dengan Email dan Password
-  - Validasi client-side menggunakan Form dan GlobalKey
+  - Validasi client-side menggunakan `Form` + `GlobalKey<FormState>`
   - Validasi email dengan regex
-  - Validasi password (minimal 8 karakter, mengandung huruf dan angka)
+  - Validasi password (minimal 8 karakter, mengandung huruf & angka)
   - Toggle show/hide password
-  - Loading indicator saat login
-  - Mock login: `admin@test.com` / `Admin123`
+  - Loading indicator
+  - Multiple user login (bukan hanya 1 mock)
 
 - **Halaman Lupa Password**
   - Form input email dengan validasi
   - Tombol Kirim Link Reset dengan loading state
-  - Feedback menggunakan Snackbar 
+  - Feedback menggunakan Snackbar
 
 - **Halaman Dashboard**
   - AppBar dengan tombol logout
-  - Menampilkan data user yang berhasil login
-  - ListView.builder dengan 12 item dummy menggunakan Card
-  - Desain Card dengan shadow dan rounded corner
-  - Logout dengan Navigator.pushAndRemoveUntil
+  - Menampilkan data user yang login
+  - GridView Recovery Tools (10 item)
+  - Bottom Navigation Bar (Home, Menu, Profil)
+  - Password di Profil bisa di show/hide
 
 ## Cara Menjalankan Aplikasi
 
-1. Buka terminal di dalam folder project
+1. Buka terminal di folder project
 2. Install dependencies:
-   
+   ```bash
    flutter pub get
-
-3. Jalankan aplikasi 
-   
-   flutter run
