@@ -12,6 +12,7 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   late User _user;
   int _currentIndex = 0;
+  bool _isProfilePasswordVisible = false;   
 
   @override
   void initState() {
@@ -50,9 +51,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ],
       ),
-
       body: _buildBody(),
-
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: _onTabTapped,
@@ -84,24 +83,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
               ),
               Text(_user.email, style: const TextStyle(fontSize: 18, color: Colors.grey)),
-              const SizedBox(height: 40),
-              const Text("Semangat hari ini!", style: TextStyle(fontSize: 16)),
             ],
           ),
         );
 
-      case 1: // MENU - Recovery Tools (Grid seperti gambar)
+      case 1: // Recovery Tools
         return Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Recovery Tools",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 4),
-              const Text("Pilih tools yang kamu butuhkan"),
+              const Text("Recovery Tools", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
               const SizedBox(height: 20),
               Expanded(
                 child: GridView.builder(
@@ -130,36 +122,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
                     return Card(
                       elevation: 6,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: (tool["color"] as Color).withOpacity(0.3), width: 2),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              tool["icon"] as IconData,
-                              size: 48,
-                              color: tool["color"] as Color,
-                            ),
-                            const SizedBox(height: 12),
-                            Text(
-                              tool["title"] as String,
-                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                              textAlign: TextAlign.center,
-                            ),
-                            const SizedBox(height: 6),
-                            Text(
-                              tool["desc"] as String,
-                              style: const TextStyle(fontSize: 13, color: Colors.grey),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(tool["icon"] as IconData, size: 48, color: tool["color"] as Color),
+                          const SizedBox(height: 12),
+                          Text(tool["title"] as String, style: const TextStyle(fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+                          Text(tool["desc"] as String, style: const TextStyle(fontSize: 13, color: Colors.grey), textAlign: TextAlign.center),
+                        ],
                       ),
                     );
                   },
@@ -169,17 +140,51 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         );
 
-      case 2: // Profile
+      case 2: // Profile - dengan toggle password
         return Padding(
           padding: const EdgeInsets.all(24.0),
           child: Column(
             children: [
-              const CircleAvatar(radius: 50, backgroundColor: Colors.blue, child: Icon(Icons.person, size: 60, color: Colors.white)),
+              const CircleAvatar(
+                radius: 50,
+                backgroundColor: Colors.blue,
+                child: Icon(Icons.person, size: 60, color: Colors.white),
+              ),
               const SizedBox(height: 30),
-              const Text("Informasi Profil", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 20),
-              ListTile(title: const Text("Email"), subtitle: Text(_user.email)),
-              const ListTile(title: Text("Password"), subtitle: Text("••••••••••")),
+              const Text(
+                "Informasi Profil",
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 30),
+
+              ListTile(
+                title: const Text("Email"),
+                subtitle: Text(_user.email),
+              ),
+
+              ListTile(
+                title: const Text("Password"),
+                subtitle: Text(
+                  _isProfilePasswordVisible ? "Admin123" : "••••••••••",
+                ),
+                trailing: IconButton(
+                  icon: Icon(
+                    _isProfilePasswordVisible ? Icons.visibility : Icons.visibility_off,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isProfilePasswordVisible = !_isProfilePasswordVisible;
+                    });
+                  },
+                ),
+              ),
+
+              const SizedBox(height: 40),
+              const Text(
+                "Aplikasi ini dibuat untuk keperluan praktikum dan mendalami materi",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.grey),
+              ),
             ],
           ),
         );

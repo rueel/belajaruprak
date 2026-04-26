@@ -66,6 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
         loggedInUser = User(
           email: user["email"]!,
           name: user["name"]!,
+          // password: user["password"]!,
         );
         break;
       }
