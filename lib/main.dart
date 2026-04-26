@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:belajaruprak/screens/login_screen.dart';
-import 'package:belajaruprak/screens/forgot_password_screen.dart';
-import 'package:belajaruprak/screens/dashboard_screen.dart';
+import 'package:koding/screens/login_screen.dart';
+import 'package:koding/screens/forgot_password_screen.dart';
+import 'package:koding/screens/dashboard_screen.dart';
 
 void main() {
   runApp(const MyApp());
