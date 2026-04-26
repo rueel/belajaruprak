@@ -1,6 +1,6 @@
 # koding
 
-A new Flutter project.
+error error go away🙏
 
 ## Getting Started
 
@@ -50,3 +50,6 @@ Aplikasi login sederhana berbasis Flutter. Aplikasi ini bersifat offline(mirip d
 2. Install dependencies:
    ```bash
    flutter pub get
+3. Jalankan aplikasi 
+   ```bash
+   flutter run
