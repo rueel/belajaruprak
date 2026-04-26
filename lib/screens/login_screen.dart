@@ -27,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
     {
       "email": "krisna@gmail.com",
       "password": "krisna123",
-      "name": "Krisna Pratama"
+      "name": "Krisna Hery"
     },
     {
       "email": "puyoh@student.com",
@@ -51,10 +51,10 @@ class _LoginScreenState extends State<LoginScreen> {
       _errorMessage = null;
     });
 
-    // Simulasi delay login
+    
     await Future.delayed(const Duration(seconds: 2));
 
-    // === BAGIAN INI JUGA DIGANTI ===
+    
     bool loginSuccess = false;
     User? loggedInUser;
 
@@ -95,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: SingleChildScrollView(
+          child: SingleChildScrollView( //responsivitas 
             padding: const EdgeInsets.all(24.0),
             child: Form(
               key: _formKey,

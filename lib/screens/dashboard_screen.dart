@@ -164,9 +164,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
               ListTile(
                 title: const Text("Password"),
-                subtitle: Text(
-                  _isProfilePasswordVisible ? "Admin123" : "••••••••••",
-                ),
+                // subtitle: Text(
+                //   _isProfilePasswordVisible ? "Admin123" : "••••••••••",
+                // ),
                 trailing: IconButton(
                   icon: Icon(
                     _isProfilePasswordVisible ? Icons.visibility : Icons.visibility_off,
